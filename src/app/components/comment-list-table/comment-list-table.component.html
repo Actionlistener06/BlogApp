@@ -1,0 +1,39 @@
+<button class="button" mat-raised-button color="primary" (click)="openAddEditDialog()">
+  ADD COMMENT
+</button>
+<span class="spacer"></span>
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field>
+<div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+  <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+    <th mat-header-cell *matHeaderCellDef>
+      {{column}}
+    </th>
+    <td mat-cell *matCellDef="let row">
+      {{row[column]}}
+    </td>
+  </ng-container>
+<ng-container matColumnDef="Action" >
+  <th mat-header-cell *matHeaderCellDef > Action</th>
+  <td mat-cell *matCellDef="let row"> 
+    <button mat-icon-button color="primary" (click)="openEditForm(row)">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" (click)="deleteComment(row.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="openDetail(row.id)">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </td>
+</ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns.concat(['Action'])"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns.concat(['Action']);"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
+

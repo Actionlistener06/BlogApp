@@ -1,0 +1,43 @@
+<ng-container >
+  <h2 >Content of the post with title "{{post?.title}}"</h2>
+<mat-card>
+  <mat-card-content>{{post?.content}} </mat-card-content>
+</mat-card>
+
+</ng-container>
+
+
+  <h2 class="h2">Comments on this post</h2>
+  <table mat-table [dataSource]="comments" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let comment"> {{comment?.id}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="comment">
+      <th mat-header-cell *matHeaderCellDef> Comment </th>
+      <td mat-cell *matCellDef="let comment"> {{comment?.comment}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="creation_date">
+      <th mat-header-cell *matHeaderCellDef> Created at </th>
+      <td mat-cell *matCellDef="let comment"> {{comment?.creation_date}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="is_confirmed">
+      <th mat-header-cell *matHeaderCellDef> Confirmed or not </th>
+      <td mat-cell *matCellDef="let comment"> {{comment?.is_confirmed}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<a routerLink="../.."> Back </a>

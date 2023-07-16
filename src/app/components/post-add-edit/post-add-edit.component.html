@@ -1,0 +1,58 @@
+<div mat-dialog-title>
+  <h1>Post Form</h1>
+</div>
+<form [formGroup]="postForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+      <div class="row">
+          <mat-form-field appearance="outline">
+              <mat-label>title</mat-label>
+              <input matInput  placeholder="Ex. Nature Love" formControlName="title">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>content</mat-label>
+            <textarea matInput placeholder="Ex. Love is a four letter world here in this prison" formControlName="content"></textarea> 
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>user id</mat-label>
+          <input matInput  type="number" placeholder="Ex. 1-100" formControlName="user_id">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>category id</mat-label>
+        <input matInput type="number" placeholder="Ex. 1-100" formControlName="category_id">
+    </mat-form-field>
+      </div>
+    
+
+      <div class="row">
+          <mat-form-field appearance="outline">
+              <mat-label>View Count</mat-label>
+              <input matInput type="number" placeholder="Ex. 1-100" formControlName="view_count">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Creation Date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="creation_date">
+              <mat-hint>YYYY/MM/DD</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field>
+            <mat-label>Published or not</mat-label>
+            <input matInput formControlName="is_published">
+        <mat-select formControlName="is_published">  
+            <mat-option  [value]="true">true</mat-option>
+            <mat-option  [value]="false">false</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+  </div>
+  <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">{{data? 'Update':'Save'}}</button>
+  </div>
+</form>

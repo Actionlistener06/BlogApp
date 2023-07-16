@@ -1,0 +1,46 @@
+<div mat-dialog-title>
+  <h1>Employee Form</h1>
+</div>
+<form [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+      <div class="row">
+          <mat-form-field appearance="outline">
+              <mat-label>User Name</mat-label>
+              <input matInput  placeholder="Ex. Babaji" formControlName="username">
+          </mat-form-field>
+      </div>
+
+      <div class="row">
+          <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" placeholder="Ex. test@gmail.com" formControlName="email">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Creation Date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="creation_date">
+              <mat-hint>YYYY/MM/DD</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field>
+            <mat-label>Active or not</mat-label>
+            <input matInput formControlName="is_active">
+        <mat-select formControlName="is_active">  
+            <mat-option  [value]="true">true</mat-option>
+            <mat-option  [value]="false">false</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+  </div>
+  <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">{{data? 'Update':'Save'}}</button>
+  </div>
+</form>
+
+
+
